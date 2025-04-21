@@ -30,11 +30,10 @@
       background: #fff;
       max-width: 90%;
       width: 400px;
-      padding: 20px 30px 60px; /* padding inferior pra dar espaço pro botão fixo */
+      padding: 30px;
       border-radius: 12px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
       text-align: center;
-      position: relative;
     }
 
     #popup h2 {
@@ -45,37 +44,27 @@
     #popup p {
       color: #555;
       font-size: 16px;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
     }
 
-    .popup-button.accept {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #4CAF50;
-      color: white;
-      padding: 14px 32px;
+    .popup-button {
+      padding: 12px 24px;
+      margin: 5px;
       border: none;
-      border-radius: 30px;
+      border-radius: 6px;
       font-size: 16px;
       cursor: pointer;
-      z-index: 10000;
-      box-shadow: 0 0 12px rgba(0,0,0,0.2);
     }
 
-    .popup-button.accept:active {
-      transform: translateX(-50%) scale(0.98);
+    .accept {
+      background-color: #4CAF50;
+      color: white;
     }
 
-    .popup-button.close {
+    .close {
       background: none;
       color: #4CAF50;
       text-decoration: underline;
-      border: none;
-      font-size: 14px;
-      margin-top: 10px;
-      cursor: pointer;
     }
 
     .site {
@@ -87,6 +76,12 @@
       left: 0;
       z-index: -1;
     }
+
+    @media only screen and (max-width: 768px) {
+      #popup {
+        width: 90%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -95,9 +90,9 @@
   <div id="popup">
     <h2>Política de Cookies</h2>
     <p>Este site utiliza cookies para melhorar sua experiência. Ao clicar em "Permitir", você concorda com nossa política de cookies.</p>
+    <button class="popup-button accept" onclick="aceitar()">Permitir</button>
     <button class="popup-button close" onclick="fechar()">Fechar</button>
   </div>
-  <button class="popup-button accept" onclick="aceitar()">Permitir</button>
   <img id="fake-bg" class="site" src="" alt="site falso">
 </div>
 
@@ -105,7 +100,7 @@
   // Detecta se é mobile e altera o fundo
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
   const bg = document.getElementById("fake-bg");
-  bg.src = isMobile ? "assets/fundo-mobile.jpeg" : "assets/fundo.png";
+  bg.src = isMobile ? "assets/fundo-mobile.png" : "assets/fundo.png";
 
   // Redireciona ao clicar em qualquer parte da página
   document.addEventListener('click', function () {
